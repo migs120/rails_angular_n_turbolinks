@@ -1,0 +1,52 @@
+   <side class='col-1'></side>
+   
+   <div class="col-10">
+       
+       <ul class="nav nav-tabs">
+        
+        
+         <li><%= link_to "MiggyMigs.Com", root_path %></li>
+         
+      <!--railslink   <li><%= link_to "About", about_path %></li>-->
+         <li><a href='#about'>About</a></li>
+         
+        <div class="pull-right user-info">
+           <% if current_user %>
+                        Hello <% link_to (current_user.name || current_user.email), edit_user_registration_path %><a href='#userEdit'> <%=(current_user.name || current_user.email)%><a>! <%= link_to "Sign out",             destroy_user_session_path, method: :delete %>
+           <% else %>
+             
+             <!--railslink  <%= link_to "Sign In", new_user_session_path %>-->
+             <!--angularlink--><a href="#sign_in">Sign In</a>
+             
+             or 
+             
+             <!--<%= link_to "Sign Up", new_user_registration_path %>-->
+             <a href="#userSignUp">Sign Up</a>
+             
+           <% end %>
+         </div>
+
+      </ul>
+       <% if flash[:notice] %>
+         <div onclick="hide()" id='flash' class="alert alert-success">
+           <button type="button" class="close" data-dismiss="alert">&times;</button>
+           <%= flash[:notice] %>
+         </div>
+       <% elsif flash[:error] %>
+         <div onclick="hide()" id='flash'class="alert alert-danger">
+           <button type="button" class="close" data-dismiss="alert">&times;</button>
+           <%= flash[:error] %>
+         </div>
+       <% elsif flash[:alert] %>
+         <div onclick="hide()" id='flash'class="alert alert-warning">
+           <button type="button" class="close"  data-dismiss="alert">&times;</button>
+           <%= flash[:alert] %>
+         </div>
+       <% end %>
+       </div>
+   <side class='col-1'></side>
+   <script>
+ 
+     function hide(){ $('.close').click($('#flash').hide()) }
+    
+   </script>
